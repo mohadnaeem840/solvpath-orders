@@ -13,6 +13,6 @@ export default defineConfig({
     tanstackStart({ server: { entry: "server" } }),
     viteReact(),
     tailwindcss(),
-    nitro({ preset: "cloudflare_module", compatibilityDate: "2026-07-21" }),
+    nitro({ preset: "vercel" }),
   ],
 });
