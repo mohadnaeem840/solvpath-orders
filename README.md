@@ -47,3 +47,17 @@ The backend is mocked — any non-empty email/password signs you in. The login s
 
 - Due to time constraints, UI components were reused from an existing project rather than built from scratch.
 - Auth is mocked via `localStorage`, not a real session/cookie — there's no server-verifiable login.
+
+- ## Decisions & Tradeoffs
+
+Some notes on choices made along the way, in case it's useful context:
+
+- **Reused UI components** from an existing project instead of building from scratch. Time was tight, so the focus was on getting the orders/returns flow working end to end rather than polishing every component.
+- **Mock backend (`src/lib/mockApi.ts`) treated as a fixed contract.** Didn't touch its behavior, just built the app against it like a real API.
+- **Auth is mocked via `localStorage`**, not real sessions/cookies. Any non-empty email/password signs you in. Fine for a demo, but the server can never actually verify who's logged in. Worth flagging if this were headed to prod.
+- **Root route (`/`) always redirects** to `/orders` or `/login` depending on auth state. It's not a real page, just a routing decision point.
+- **Deploying to Vercel** via Nitro's `vercel` preset (Build Output API). Swapped from an earlier Cloudflare Workers target.
+- Cleaned up leftover scaffolding (stray AI flavored comments, unused files) so the repo reads like a normal hand built project.
+
+Given more time, next on the list would be real UI polish, proper auth/session handling, and test coverage.
+
